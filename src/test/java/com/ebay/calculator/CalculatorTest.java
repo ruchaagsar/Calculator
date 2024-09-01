@@ -1,5 +1,6 @@
 package com.ebay.calculator;
 
+import com.ebay.calculator.exception.ComputableException;
 import com.ebay.calculator.operation.Operation;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,5 +19,19 @@ public class CalculatorTest {
     public void testCalculateChainingForEachOperation(){
         double computedValue = new Calculator(5).calculate(Operation.ADD, 7).calculate(Operation.SUBTRACT,2).calculate(Operation.MULTIPLY,5).calculate(Operation.DIVIDE,25).getCalculatedValue().doubleValue();
         Assert.assertTrue(computedValue == 2);
+    }
+
+    @Test
+    public void testNullOperationSubmission(){
+        try {
+            Calculator.calculate(null, 5, 7);
+            Assert.fail();
+        }catch(ComputableException ex){}
+
+        try {
+            new Calculator(5).calculate(null, 7).getCalculatedValue().doubleValue();
+            Assert.fail();
+        }catch(ComputableException ex){}
+
     }
 }

@@ -19,3 +19,4 @@ Addition of operations in Operation enum does not cause code in Calculator to ge
 #### Assumption:
 * Operations are binary operations
 * During chaining of operations, operator precedence rules are not followed.
+* Java throws IllegalArgumentException for Operation.valueOf method. Unsupported operation is handled through this error message.
